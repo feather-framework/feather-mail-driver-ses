@@ -24,7 +24,7 @@ final class FeatherMailDriverSESTests: XCTestCase {
     var secret: String {
         ProcessInfo.processInfo.environment["SES_SECRET"]!
     }
-    
+
     var region: String {
         ProcessInfo.processInfo.environment["SES_REGION"]!
     }
@@ -42,26 +42,27 @@ final class FeatherMailDriverSESTests: XCTestCase {
 
         do {
             let registry = ServiceRegistry()
-            
+
             let client = AWSClient(
                 credentialProvider: .static(
                     accessKeyId: id,
                     secretAccessKey: secret
                 ),
-                httpClientProvider: .createNewWithEventLoopGroup(eventLoopGroup),
+                httpClientProvider: .createNewWithEventLoopGroup(
+                    eventLoopGroup
+                ),
                 logger: .init(label: "aws")
             )
             try await registry.add(
-                .sesMail(
+                SESMailServiceContext(
                     eventLoopGroup: eventLoopGroup,
                     client: client,
-                    region: .init(rawValue: region)
-                ),
-                as: .sesMail
+                    region: .init(rawValue: self.region)
+                )
             )
 
             try await registry.run()
-            let mail = try await registry.get(.sesMail) as! MailService
+            let mail = try await registry.mail()
 
             do {
                 let suite = MailTestSuite(mail)
