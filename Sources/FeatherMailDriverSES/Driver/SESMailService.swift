@@ -39,7 +39,7 @@ extension SESMailService: MailService {
                 raw: rawMessage
             )
         )
-        
+
         let ses = SESv2(
             client: self.client,
             region: self.region,
@@ -53,7 +53,7 @@ extension SESMailService: MailService {
         _ = try await ses.sendEmail(
             request,
             logger: logger,
-            on: self.eventLoopGroup.any()
+            on: self.eventLoopGroup.next()
         )
     }
 }

@@ -10,7 +10,7 @@ import SotoCore
 import Logging
 import FeatherService
 
-struct SESMailServiceContext: ServiceContext {
+public struct SESMailServiceContext: ServiceContext {
 
     let eventLoopGroup: EventLoopGroup
     let client: AWSClient
@@ -20,7 +20,25 @@ struct SESMailServiceContext: ServiceContext {
     let timeout: TimeAmount?
     let byteBufferAllocator: ByteBufferAllocator
 
-    func createDriver() throws -> ServiceDriver {
+    public init(
+        eventLoopGroup: EventLoopGroup,
+        client: AWSClient,
+        region: Region,
+        partition: AWSPartition = .aws,
+        endpoint: String? = nil,
+        timeout: TimeAmount? = nil,
+        byteBufferAllocator: ByteBufferAllocator = .init()
+    ) {
+        self.eventLoopGroup = eventLoopGroup
+        self.client = client
+        self.region = region
+        self.partition = partition
+        self.endpoint = endpoint
+        self.timeout = timeout
+        self.byteBufferAllocator = byteBufferAllocator
+    }
+
+    public func createDriver() throws -> ServiceDriver {
         SESMailServiceDriver()
     }
 }
