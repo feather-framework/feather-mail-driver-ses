@@ -8,18 +8,17 @@ let package = Package(
         .iOS(.v16),
         .tvOS(.v16),
         .watchOS(.v9),
+        .visionOS(.v1),
     ],
     products: [
         .library(name: "FeatherMailDriverSES", targets: ["FeatherMailDriverSES"]),
 //        .library(name: "SotoSESv2", targets: ["SotoSESv2"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/soto-project/soto-core", from: "6.5.0"),
-        .package(url: "https://github.com/soto-project/soto", from: "6.8.0"),
+        .package(url: "https://github.com/soto-project/soto-core", from: "6.0.0"),
+        .package(url: "https://github.com/soto-project/soto", from: "6.0.0"),
 //        .package(url: "https://github.com/soto-project/soto-codegenerator", from: "0.8.0"),
-        .package(url: "https://github.com/feather-framework/feather-mail.git",
-            .upToNextMinor(from: "0.2.0")
-        ),
+        .package(url: "https://github.com/feather-framework/feather-mail.git", .upToNextMinor(from: "0.4.0")),
     ],
     targets: [
 //        .target(

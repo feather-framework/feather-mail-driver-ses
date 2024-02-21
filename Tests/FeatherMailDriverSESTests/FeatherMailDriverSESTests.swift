@@ -9,7 +9,7 @@ import NIO
 import Logging
 import Foundation
 import XCTest
-import FeatherService
+import FeatherComponent
 import FeatherMail
 import FeatherMailDriverSES
 import XCTFeatherMail
@@ -41,7 +41,7 @@ final class FeatherMailDriverSESTests: XCTestCase {
         let eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
 
         do {
-            let registry = ServiceRegistry()
+            let registry = ComponentRegistry()
 
             let client = AWSClient(
                 credentialProvider: .static(
@@ -53,8 +53,8 @@ final class FeatherMailDriverSESTests: XCTestCase {
                 ),
                 logger: .init(label: "aws")
             )
-            try await registry.add(
-                SESMailServiceContext(
+            try await registry.addMail(
+                SESMailComponentContext(
                     eventLoopGroup: eventLoopGroup,
                     client: client,
                     region: .init(rawValue: self.region)
