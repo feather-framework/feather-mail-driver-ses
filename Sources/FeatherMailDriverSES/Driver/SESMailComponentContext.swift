@@ -1,5 +1,5 @@
 //
-//  SESMailServiceContext.swift
+//  SESMailComponentContext.swift
 //  FeatherMailDriverSES
 //
 //  Created by Tibor Bodecs on 2020. 04. 28..
@@ -8,9 +8,9 @@
 import NIO
 import SotoCore
 import Logging
-import FeatherService
+import FeatherComponent
 
-public struct SESMailServiceContext: ServiceContext {
+public struct SESMailComponentContext: ComponentContext {
 
     let eventLoopGroup: EventLoopGroup
     let client: AWSClient
@@ -38,7 +38,7 @@ public struct SESMailServiceContext: ServiceContext {
         self.byteBufferAllocator = byteBufferAllocator
     }
 
-    public func createDriver() throws -> ServiceDriver {
-        SESMailServiceDriver()
+    public func make() throws -> ComponentBuilder {
+        SESMailComponentBuilder()
     }
 }

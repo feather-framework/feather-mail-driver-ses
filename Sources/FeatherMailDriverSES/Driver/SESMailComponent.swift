@@ -1,34 +1,34 @@
 //
-//  SESMailService.swift
+//  SESMailComponent.swift
 //  FeatherMailDriverSES
 //
 //  Created by Tibor Bodecs on 2020. 04. 28..
 //
 
 import Foundation
-import FeatherService
+import FeatherComponent
 import FeatherMail
 import NIO
 import SotoSESv2
 
 @dynamicMemberLookup
-struct SESMailService {
+struct SESMailComponent {
 
-    let config: ServiceConfig
+    let config: ComponentConfig
 
     subscript<T>(
-        dynamicMember keyPath: KeyPath<SESMailServiceContext, T>
+        dynamicMember keyPath: KeyPath<SESMailComponentContext, T>
     ) -> T {
-        let context = config.context as! SESMailServiceContext
+        let context = config.context as! SESMailComponentContext
         return context[keyPath: keyPath]
     }
 
-    init(config: ServiceConfig) {
+    init(config: ComponentConfig) {
         self.config = config
     }
 }
 
-extension SESMailService: MailService {
+extension SESMailComponent: MailComponent {
 
     public func send(_ email: FeatherMail.Mail) async throws {
         let rawMessage = SESv2.RawMessage(

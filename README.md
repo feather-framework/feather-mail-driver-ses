@@ -1,6 +1,6 @@
 # Feather Mail Driver SES
 
-A mail driver for the Feather CMS mail service using AWS SES.
+A mail driver for the Feather CMS mail component using AWS SES.
 
 ## Getting started
 
