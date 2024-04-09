@@ -22,14 +22,11 @@ struct SESMailComponent {
         let context = config.context as! SESMailComponentContext
         return context[keyPath: keyPath]
     }
-
-    init(config: ComponentConfig) {
-        self.config = config
-    }
 }
 
 extension SESMailComponent: MailComponent {
 
+    /// send a new mail
     public func send(_ email: FeatherMail.Mail) async throws {
         let rawMessage = SESv2.RawMessage(
             data: AWSBase64Data.base64(email.convetToSES())

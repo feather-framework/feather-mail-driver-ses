@@ -10,6 +10,7 @@ import SotoCore
 import Logging
 import FeatherComponent
 
+/// ses mail component context
 public struct SESMailComponentContext: ComponentContext {
 
     let eventLoopGroup: EventLoopGroup
@@ -20,6 +21,7 @@ public struct SESMailComponentContext: ComponentContext {
     let timeout: TimeAmount?
     let byteBufferAllocator: ByteBufferAllocator
 
+    /// ses mail component context init
     public init(
         eventLoopGroup: EventLoopGroup,
         client: AWSClient,
@@ -38,7 +40,8 @@ public struct SESMailComponentContext: ComponentContext {
         self.byteBufferAllocator = byteBufferAllocator
     }
 
-    public func make() throws -> ComponentBuilder {
-        SESMailComponentBuilder()
+    /// make a componet factory
+    public func make() throws -> ComponentFactory {
+        SESMailComponentFactory()
     }
 }
