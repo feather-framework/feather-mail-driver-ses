@@ -18,7 +18,7 @@ let package = Package(
         .package(url: "https://github.com/soto-project/soto-core", from: "6.0.0"),
         .package(url: "https://github.com/soto-project/soto", from: "6.0.0"),
 //        .package(url: "https://github.com/soto-project/soto-codegenerator", from: "0.8.0"),
-        .package(url: "https://github.com/feather-framework/feather-mail.git", .upToNextMinor(from: "0.4.0")),
+        .package(url: "https://github.com/feather-framework/feather-mail.git", .upToNextMinor(from: "0.5.0")),
     ],
     targets: [
 //        .target(

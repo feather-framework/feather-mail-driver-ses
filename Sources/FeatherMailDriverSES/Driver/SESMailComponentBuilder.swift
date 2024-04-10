@@ -9,7 +9,7 @@ import FeatherComponent
 import SotoSESv2
 import SotoCore
 
-struct SESMailComponentBuilder: ComponentBuilder {
+struct SESMailComponentFactory: ComponentFactory {
 
     func build(using config: ComponentConfig) throws -> Component {
         SESMailComponent(config: config)
