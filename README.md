@@ -49,4 +49,4 @@ let package = Package(
 See the `FeatherMailDriverSESTests` target for a basic implementation.
 
 See developer documentation here:
-[Documentation](https://feather-framework.github.io/feather-mail-diver-ses/documentation/feathermaildriverses)
+[Documentation](https://feather-framework.github.io/feather-mail-driver-ses/documentation/feathermaildriverses)

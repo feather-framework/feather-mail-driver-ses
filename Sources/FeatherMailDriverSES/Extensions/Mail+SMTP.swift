@@ -10,6 +10,7 @@ import FeatherMail
 
 extension Mail.Address {
 
+    /// Returns the MIME representation of the email address.
     var mime: String {
         if let name {
             return "\(name) <\(email)>"
@@ -20,13 +21,17 @@ extension Mail.Address {
 
 extension Mail {
 
+    /// Creates a unique boundary string for multipart messages.
+    /// - Returns: A boundary string.
     func createBoundary() -> String {
         UUID().uuidString
             .replacingOccurrences(of: "-", with: "")
             .lowercased()
     }
 
-    func convetToSES() -> String {
+    /// Converts the email message to SES format.
+    /// - Returns: The email message in SES format.
+    func convertToSES() -> String {
         let date = Date()
         let time = date.timeIntervalSince1970
 
@@ -34,7 +39,6 @@ extension Mail {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
-
         let dateFormatted = dateFormatter.string(from: date)
 
         let uuid = "<\(time)\(from.email.drop { $0 != "@" })>"

@@ -34,7 +34,7 @@ extension SESMailComponent: MailComponent {
     /// - Throws: An error if the email could not be sent.
     public func send(_ email: FeatherMail.Mail) async throws {
         let rawMessage = SESv2.RawMessage(
-            data: AWSBase64Data.base64(email.convetToSES())
+            data: AWSBase64Data.base64(email.convertToSES())
         )
         let request = SESv2.SendEmailRequest(
             content: .init(
