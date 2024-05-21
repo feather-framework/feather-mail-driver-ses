@@ -27,3 +27,6 @@ doc:
     --transform-for-static-hosting \
 	--hosting-base-path feather-mail-driver-ses \
 	--output-path ./docs
+	
+preview:
+	swift package --disable-sandbox preview-documentation --target FeatherMailDriverSES
