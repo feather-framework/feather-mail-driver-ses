@@ -11,11 +11,14 @@ import FeatherMail
 import NIO
 import SotoSESv2
 
+/// A structure representing an SES mail component.
 @dynamicMemberLookup
 struct SESMailComponent {
 
+    /// The configuration for the component.
     let config: ComponentConfig
 
+    /// Retrieves values dynamically from the SES mail component context.
     subscript<T>(
         dynamicMember keyPath: KeyPath<SESMailComponentContext, T>
     ) -> T {
@@ -26,7 +29,9 @@ struct SESMailComponent {
 
 extension SESMailComponent: MailComponent {
 
-    /// send a new mail
+    /// Sends an email using SES.
+    /// - Parameter email: The email to send.
+    /// - Throws: An error if the email could not be sent.
     public func send(_ email: FeatherMail.Mail) async throws {
         let rawMessage = SESv2.RawMessage(
             data: AWSBase64Data.base64(email.convetToSES())

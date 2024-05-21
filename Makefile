@@ -18,3 +18,11 @@ check:
 
 format:
 	./scripts/run-swift-format.sh --fix
+
+doc:
+	swift package --allow-writing-to-directory ./docs \
+    generate-documentation --target FeatherMailDriverSES \
+    --disable-indexing \
+    --transform-for-static-hosting \
+	--hosting-base-path feather-mail-driver-ses \
+	--output-path ./docs

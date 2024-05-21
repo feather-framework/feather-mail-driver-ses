@@ -10,18 +10,33 @@ import SotoCore
 import Logging
 import FeatherComponent
 
-/// ses mail component context
+/// A structure representing the context for the SES mail component.
 public struct SESMailComponentContext: ComponentContext {
 
+    /// The event loop group.
     let eventLoopGroup: EventLoopGroup
+    /// The AWS client.
     let client: AWSClient
+    /// The AWS region.
     let region: Region
+    /// The AWS partition.
     let partition: AWSPartition
+    /// The endpoint.
     let endpoint: String?
+    /// The timeout.
     let timeout: TimeAmount?
+    /// The byte buffer allocator.
     let byteBufferAllocator: ByteBufferAllocator
 
-    /// ses mail component context init
+    /// Initializes the SES mail component context.
+    /// - Parameters:
+    ///   - eventLoopGroup: The event loop group.
+    ///   - client: The AWS client.
+    ///   - region: The AWS region.
+    ///   - partition: The AWS partition. Default is `.aws`.
+    ///   - endpoint: The endpoint. Default is nil.
+    ///   - timeout: The timeout. Default is nil.
+    ///   - byteBufferAllocator: The byte buffer allocator. Default is a new instance.
     public init(
         eventLoopGroup: EventLoopGroup,
         client: AWSClient,
@@ -40,7 +55,9 @@ public struct SESMailComponentContext: ComponentContext {
         self.byteBufferAllocator = byteBufferAllocator
     }
 
-    /// make a componet factory
+    /// Creates a component factory.
+    /// - Throws: An error if the component factory cannot be created.
+    /// - Returns: A component factory.
     public func make() throws -> ComponentFactory {
         SESMailComponentFactory()
     }

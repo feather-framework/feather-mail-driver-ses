@@ -43,3 +43,10 @@ let package = Package(
     ]
 )
 ```
+
+###  Using FeatherMailDriverSES
+
+See the `FeatherMailDriverSESTests` target for a basic implementation.
+
+See developer documentation here:
+[Documentation](https://feather-framework.github.io/feather-mail-diver-ses/documentation/feathermaildriverses)
