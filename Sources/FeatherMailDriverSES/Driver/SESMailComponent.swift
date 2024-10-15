@@ -49,8 +49,7 @@ extension SESMailComponent: MailComponent {
 
         _ = try await ses.sendEmail(
             request,
-            logger: logger,
-            on: self.eventLoopGroup.next()
+            logger: logger
         )
     }
 }
