@@ -48,9 +48,6 @@ final class FeatherMailDriverSESTests: XCTestCase {
                     accessKeyId: id,
                     secretAccessKey: secret
                 ),
-                httpClientProvider: .createNewWithEventLoopGroup(
-                    eventLoopGroup
-                ),
                 logger: .init(label: "aws")
             )
             try await registry.addMail(
