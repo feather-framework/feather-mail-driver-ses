@@ -9,6 +9,7 @@ import Foundation
 import FeatherMail
 import FeatherMailSES
 import FeatherGeneratedSES
+import Logging
 import SotoCore
 import Testing
 
@@ -38,7 +39,7 @@ struct FeatherMailSESTestSuite {
                 accessKeyId: accessKeyId ?? config.accessKeyId,
                 secretAccessKey: secretAccessKey ?? config.secretAccessKey
             ),
-            logger: .init(label: "feather.mail.ses")
+            logger: Logger.current
         )
 
         let ses = SESv2(
@@ -60,20 +61,22 @@ struct FeatherMailSESTestSuite {
         endpoint: String? = nil,
         _ closure: @escaping @Sendable (MailClientSES) async throws -> Void
     ) async throws {
-        let (ses, awsClient) = buildSES(
-            accessKeyId: accessKeyId,
-            secretAccessKey: secretAccessKey,
-            endpoint: endpoint
-        )
-        let client = MailClientSES(
-            ses: ses,
-            encoder: RawMailEncoder(
-                headerDateEncodingStrategy: formatDateHeader
+        try await withLogger(Logger(label: "feather.mail.ses")) { _ in
+            let (ses, awsClient) = buildSES(
+                accessKeyId: accessKeyId,
+                secretAccessKey: secretAccessKey,
+                endpoint: endpoint
             )
-        )
+            let client = MailClientSES(
+                ses: ses,
+                encoder: RawMailEncoder(
+                    headerDateEncodingStrategy: formatDateHeader
+                )
+            )
 
-        try await closure(client)
-        try await awsClient.shutdown()
+            try await closure(client)
+            try await awsClient.shutdown()
+        }
     }
 
     // MARK: - Tests

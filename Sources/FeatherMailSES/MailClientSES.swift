@@ -34,29 +34,23 @@ public struct MailClientSES: MailClient, Sendable {
     /// Underlying AWS client.
     private let client: AWSClient
 
-    /// Logger used for Amazon SES operations.
-    private let logger: Logger
-
     /// Creates a new Amazon SES mail client using an existing SES client.
     ///
     /// - Parameters:
     ///   - ses: A configured `SESv2` client instance.
     ///   - encoder: Encoder used to convert mails into raw MIME messages.
     ///   - validator: Validator applied before delivery.
-    ///   - logger: Logger used for SES request and transport logging.
     public init(
         ses: SESv2,
         encoder: any MailEncoder,
         validator: MailValidator = BasicMailValidator(
             maxTotalAttachmentSize: 7_500_000
-        ),
-        logger: Logger = .init(label: "feather.mail.ses")
+        )
     ) {
         self.ses = ses
         self.client = ses.client
         self.encoder = encoder
         self.validator = validator
-        self.logger = logger
     }
 
     /// Validates a mail using the configured validator.
@@ -99,7 +93,7 @@ public struct MailClientSES: MailClient, Sendable {
             //result is not used for now
             _ = try await ses.sendEmail(
                 request,
-                logger: logger
+                logger: Logger.current
             )
         }
         catch {
