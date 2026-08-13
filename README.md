@@ -2,7 +2,7 @@
 
 Amazon SES-backed mail client for Feather Mail.
 
-[![Release:1.0.0-beta.6](https://img.shields.io/badge/Release-1.0.0--beta.6-F05138)](https://github.com/feather-framework/feather-mail-ses/releases/tag/1.0.0-beta.6)
+[![Release:1.0.0-rc.1](https://img.shields.io/badge/Release-1.0.0--rc.1-F05138)](https://github.com/feather-framework/feather-mail-ses/releases/tag/1.0.0-rc.1)
 
 ## Features
 
@@ -30,7 +30,7 @@ Amazon SES-backed mail client for Feather Mail.
 Use Swift Package Manager; add the dependency to your `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/feather-framework/feather-mail-ses", exact: "1.0.0-beta.6"),
+.package(url: "https://github.com/feather-framework/feather-mail-ses", exact: "1.0.0-rc.1"),
 ```
 
 Then add `FeatherMailSES` to your target dependencies:
