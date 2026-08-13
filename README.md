@@ -2,7 +2,7 @@
 
 Amazon SES-backed mail client for Feather Mail.
 
-[![Release:1.0.0-beta.5](https://img.shields.io/badge/Release-1.0.0--beta.5-F05138)](https://github.com/feather-framework/feather-mail-ses/releases/tag/1.0.0-beta.5)
+[![Release:1.0.0-rc.1](https://img.shields.io/badge/Release-1.0.0--rc.1-F05138)](https://github.com/feather-framework/feather-mail-ses/releases/tag/1.0.0-rc.1)
 
 ## Features
 
@@ -30,7 +30,7 @@ Amazon SES-backed mail client for Feather Mail.
 Use Swift Package Manager; add the dependency to your `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/feather-framework/feather-mail-ses", exact: "1.0.0-beta.5"),
+.package(url: "https://github.com/feather-framework/feather-mail-ses", exact: "1.0.0-rc.1"),
 ```
 
 Then add `FeatherMailSES` to your target dependencies:
@@ -44,6 +44,8 @@ Then add `FeatherMailSES` to your target dependencies:
 [![DocC API documentation](https://img.shields.io/badge/DocC-API_documentation-F05138)](https://feather-framework.github.io/feather-mail-ses/)
 
 API documentation is available at the following link.
+
+The package uses `Logger.current` from [swift-log](https://github.com/apple/swift-log) for SES request logging. Use `withLogger` to scope the logger for an operation; calls to `Logger.current` within that scope use the scoped logger.
 
 > [!WARNING]
 > This repository is a work in progress, things can break until it reaches v1.0.0.

@@ -33,10 +33,11 @@ let package = Package(
         .library(name: "FeatherMailSES", targets: ["FeatherMailSES"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
         // [docc-plugin-placeholder]
         .package(url: "https://github.com/soto-project/soto-core", from: "7.0.0"),
         .package(url: "https://github.com/soto-project/soto-codegenerator", from: "7.0.0"),
-        .package(url: "https://github.com/feather-framework/feather-mail", exact: "1.0.0-beta.3"),
+        .package(url: "https://github.com/feather-framework/feather-mail", exact: "1.0.0-rc.1"),
     ],
     targets: [
         .target(
@@ -55,6 +56,7 @@ let package = Package(
                 .product(name: "FeatherMail", package: "feather-mail"),
                 .target(name: "FeatherGeneratedSES"),
                 .product(name: "SotoCore", package: "soto-core"),
+                .product(name: "Logging", package: "swift-log"),
             ],
             swiftSettings: defaultSwiftSettings
         ),
